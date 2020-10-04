@@ -23,13 +23,10 @@ class SplashActivity : AppCompatActivity() {
         background_image.animation = sideAnim
         powered_by_line.animation = bottomAnim
 
-        Handler().postDelayed(object : Runnable{
-            override fun run() {
-                val intent = Intent(applicationContext,UserDashBoard::class.java)
-                startActivity(intent)
-                finish()
-            }
-
+        Handler().postDelayed({
+            val intent = Intent(applicationContext,UserDashBoard::class.java)
+            startActivity(intent)
+            finish()
         },SPLASH_TIMER)
     }
 }
