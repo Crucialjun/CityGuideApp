@@ -24,7 +24,7 @@ class SplashActivity : AppCompatActivity() {
         powered_by_line.animation = bottomAnim
 
         Handler().postDelayed({
-            val intent = Intent(applicationContext,UserDashBoard::class.java)
+            val intent = Intent(applicationContext,OnboardingActivity::class.java)
             startActivity(intent)
             finish()
         },SPLASH_TIMER)

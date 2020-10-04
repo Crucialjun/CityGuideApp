@@ -10,7 +10,7 @@
         android:id="@+id/img_slider"
         android:layout_width="0dp"
         android:layout_height="400dp"
-        android:layout_marginTop="8dp"
+        android:padding="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,8 +22,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:fontFamily="@font/neutra_text_book"
+        android:gravity="center"
+        android:text="@string/first_slide_title"
         android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_slider" />
+
+    <TextView
+        android:id="@+id/txt_slider_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/first_slide_desc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_slider_heading" />
 </androidx.constraintlayout.widget.ConstraintLayout>
