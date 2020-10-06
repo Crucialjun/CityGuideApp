@@ -1,5 +1,6 @@
 package com.example.cityguideapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Html
 import android.view.View
@@ -16,6 +17,8 @@ private val ViewPager.animation1: Animation?
         val animation = AnimationUtils.loadAnimation(context, R.anim.bottom_anim)
         return animation
     }
+private var currentPosition = 0
+
 
 class OnboardingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +29,8 @@ class OnboardingActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.activity_onboarding)
+
+
 
 
 
@@ -44,6 +49,7 @@ class OnboardingActivity : AppCompatActivity() {
                 override fun onPageSelected(position: Int) {
                     addDots(position)
 
+                    currentPosition = position
                     when (position) {
                         0 -> btn_get_started.visibility = View.INVISIBLE
                         1 -> btn_get_started.visibility = View.INVISIBLE
@@ -72,7 +78,9 @@ class OnboardingActivity : AppCompatActivity() {
     }
 
     private fun addDots(position: Int) {
-        val dots = arrayOfNulls<TextView>(4)
+
+        val dots: Array<TextView?> = arrayOfNulls(4)
+
         dots_layout.removeAllViews()
 
         for (i in dots.indices) {
@@ -88,6 +96,15 @@ class OnboardingActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    fun skip(view: View) {
+        startActivity(Intent(applicationContext, UserDashBoard::class.java))
+        finish()
+    }
+
+    fun next(view: View) {
+        vp_on_boarding.currentItem = currentPosition + 1
     }
 
 
