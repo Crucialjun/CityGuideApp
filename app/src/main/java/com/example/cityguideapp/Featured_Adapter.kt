@@ -12,9 +12,9 @@ class Featured_Adapter(val featuredLocations: ArrayList<FeaturedHelper>) :
 
 
     inner class FeaturedAdapaterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val image = itemView.findViewById<ImageView>(R.id.featured_image)
-        val title = itemView.findViewById<TextView>(R.id.featured_title)
-        val description = itemView.findViewById<TextView>(R.id.featured_description)
+        val image: ImageView? = itemView.findViewById<ImageView>(R.id.featured_image)
+        val title: TextView? = itemView.findViewById<TextView>(R.id.featured_title)
+        val description: TextView? = itemView.findViewById<TextView>(R.id.featured_description)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeaturedAdapaterViewHolder {
@@ -29,9 +29,9 @@ class Featured_Adapter(val featuredLocations: ArrayList<FeaturedHelper>) :
 
         val featuredHelper = featuredLocations[position]
 
-        holder.image.setImageResource(featuredHelper.image)
-        holder.title.text = featuredHelper.title
-        holder.description.text = featuredHelper.description
+        holder.image!!.setImageResource(featuredHelper.image)
+        holder.title!!.text = featuredHelper.title
+        holder.description!!.text = featuredHelper.description
     }
 
     override fun getItemCount(): Int {

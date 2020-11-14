@@ -52,5 +52,6 @@ class UserDashBoard : AppCompatActivity() {
         )
 
         featured_recycler.adapter = Featured_Adapter(featuredLocations)
+
     }
 }
