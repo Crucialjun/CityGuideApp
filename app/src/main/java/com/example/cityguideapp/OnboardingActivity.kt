@@ -5,18 +5,13 @@ import android.os.Bundle
 import android.text.Html
 import android.view.View
 import android.view.WindowManager
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_onboarding.*
 
-private val ViewPager.animation1: Animation?
-    get() {
-        val animation = AnimationUtils.loadAnimation(context, R.anim.bottom_anim)
-        return animation
-    }
+
 private var currentPosition = 0
 
 
