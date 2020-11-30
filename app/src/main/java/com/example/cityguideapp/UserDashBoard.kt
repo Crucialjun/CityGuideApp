@@ -1,12 +1,14 @@
 package com.example.cityguideapp
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_user_dash_board.*
 
-class UserDashBoard : AppCompatActivity() {
+class UserDashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +21,10 @@ class UserDashBoard : AppCompatActivity() {
         setContentView(R.layout.activity_user_dash_board)
 
         featuredRecycler()
+
+        navigation_view.bringToFront()
+        navigation_view.setNavigationItemSelectedListener(this)
+        navigation_view.setCheckedItem(R.id.nav_home)
     }
 
     private fun featuredRecycler() {
@@ -53,5 +59,9 @@ class UserDashBoard : AppCompatActivity() {
 
         featured_recycler.adapter = Featured_Adapter(featuredLocations)
 
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return true
     }
 }
