@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_user_dash_board.*
@@ -22,9 +23,24 @@ class UserDashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         featuredRecycler()
 
+        navigationDrawer()
+
+
+    }
+
+    private fun navigationDrawer() {
         navigation_view.bringToFront()
         navigation_view.setNavigationItemSelectedListener(this)
         navigation_view.setCheckedItem(R.id.nav_home)
+
+        val drawerLayout = drawer_layout
+        menu_icon.setOnClickListener {
+            if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START)
+            } else {
+                drawerLayout.openDrawer(GravityCompat.START)
+            }
+        }
     }
 
     private fun featuredRecycler() {
