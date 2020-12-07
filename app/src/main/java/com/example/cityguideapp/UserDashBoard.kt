@@ -5,12 +5,14 @@ import android.view.MenuItem
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_user_dash_board.*
 
 class UserDashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,13 +35,21 @@ class UserDashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         navigation_view.setNavigationItemSelectedListener(this)
         navigation_view.setCheckedItem(R.id.nav_home)
 
-        val drawerLayout = drawer_layout
+        drawerLayout = drawer_layout
         menu_icon.setOnClickListener {
             if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
                 drawerLayout.closeDrawer(GravityCompat.START)
             } else {
                 drawerLayout.openDrawer(GravityCompat.START)
             }
+        }
+    }
+
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerVisible(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
         }
     }
 
