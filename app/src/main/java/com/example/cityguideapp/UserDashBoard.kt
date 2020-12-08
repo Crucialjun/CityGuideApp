@@ -43,6 +43,12 @@ class UserDashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 drawerLayout.openDrawer(GravityCompat.START)
             }
         }
+
+        animateNavigationDrawer()
+    }
+
+    private fun animateNavigationDrawer() {
+        TODO("Not yet implemented")
     }
 
     override fun onBackPressed() {
