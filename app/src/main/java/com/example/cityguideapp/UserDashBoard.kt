@@ -2,6 +2,7 @@ package com.example.cityguideapp
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -12,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_user_dash_board.*
 
 class UserDashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    lateinit var drawerLayout: DrawerLayout
+    private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +49,23 @@ class UserDashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     }
 
     private fun animateNavigationDrawer() {
-        TODO("Not yet implemented")
+        drawerLayout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+                // Scale the View based on current slide offset
+                val diffScaledOffset: Float = (slideOffset * (1 - END_SCALE)).toFloat()
+                val offSetScale: Float = 1 - diffScaledOffset
+                content.scaleX = offSetScale
+                content.scaleY = offSetScale
+
+                // Translate the View, accounting for the scaled width
+                val xOffSet = drawerView.width * slideOffset
+                val xOffSetDiff = content.width * diffScaledOffset / 2
+                val xTranslation = xOffSet - xOffSetDiff
+                content.translationX = xTranslation
+
+
+            }
+        })
     }
 
     override fun onBackPressed() {
@@ -95,5 +112,9 @@ class UserDashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         return true
+    }
+
+    companion object {
+        private val END_SCALE = 0.7
     }
 }
