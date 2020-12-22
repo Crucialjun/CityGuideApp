@@ -111,10 +111,20 @@ class UserDashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_categories -> {
+                drawerLayout.closeDrawer(GravityCompat.START)
+                val fragment = AllCategoriesFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.main_frame, fragment)
+                    .addToBackStack(null)
+                    .commit()
+
+            }
+        }
         return true
     }
 
     companion object {
-        private val END_SCALE = 0.7
+        private const val END_SCALE = 0.7
     }
 }
