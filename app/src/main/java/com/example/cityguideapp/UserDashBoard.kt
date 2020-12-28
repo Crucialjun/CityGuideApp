@@ -1,5 +1,6 @@
 package com.example.cityguideapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -27,6 +28,10 @@ class UserDashBoard : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         featuredRecycler()
 
         navigationDrawer()
+
+        login_signup.setOnClickListener {
+            startActivity(Intent(applicationContext, RetailerStartUpActivity::class.java))
+        }
 
 
     }

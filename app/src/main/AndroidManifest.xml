@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".RetailerStartUpActivity"></activity>
         <activity android:name=".OnboardingActivity" />
         <activity android:name=".UserDashBoard" />
         <activity android:name=".SplashActivity">
