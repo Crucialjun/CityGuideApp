@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/nav_retailer">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_retailer"
+    app:startDestination="@id/retailerSignUpSignInFragment">
 
+    <fragment
+        android:id="@+id/retailerSignUpSignInFragment"
+        android:name="com.example.cityguideapp.RetailerSignUpSignInFragment"
+        android:label="fragment_retailer_sign_up_sign_in"
+        tools:layout="@layout/fragment_retailer_sign_up_sign_in">
+        <action
+            android:id="@+id/action_retailerSignUpSignInFragment_to_loginRetailerFragment"
+            app:destination="@id/loginRetailerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginRetailerFragment"
+        android:name="com.example.cityguideapp.LoginRetailerFragment"
+        android:label="fragment_login_retailer"
+        tools:layout="@layout/fragment_login_retailer" />
 </navigation>
