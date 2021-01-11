@@ -18,5 +18,23 @@
         android:id="@+id/loginRetailerFragment"
         android:name="com.example.cityguideapp.LoginRetailerFragment"
         android:label="fragment_login_retailer"
-        tools:layout="@layout/fragment_login_retailer" />
+        tools:layout="@layout/fragment_login_retailer">
+        <action
+            android:id="@+id/action_loginRetailerFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.cityguideapp.SignUpFragment"
+        android:label="fragment_retailer_sign_up"
+        tools:layout="@layout/fragment_retailer_sign_up">
+        <action
+            android:id="@+id/action_signUpFragment_to_signUpSecondFragment"
+            app:destination="@id/signUpSecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpSecondFragment"
+        android:name="com.example.cityguideapp.SignUpSecondFragment"
+        android:label="fragment_sign_up_second"
+        tools:layout="@layout/fragment_sign_up_second" />
 </navigation>
