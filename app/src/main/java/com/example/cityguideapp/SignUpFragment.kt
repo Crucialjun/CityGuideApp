@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import kotlinx.android.synthetic.main.fragment_retailer_sign_up.*
+import kotlinx.android.synthetic.main.fragment_retailer_sign_up_sign_in.*
 
 
 /**
@@ -28,12 +31,21 @@ class SignUpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sign_up_next_btn.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(p0: View?) {
-                TODO("Not yet implemented")
-            }
+        sign_up_next_btn.setOnClickListener { p0 ->
+            val extras = FragmentNavigatorExtras(
+                signup_back_button to "transition_back_btn",
+                sign_up_next_btn to "transition_next_btn",
+                sign_up_login_btn to "transition_login_btn",
+                sign_up_title_text to "transition_title_text"
+            )
 
-        })
+            p0!!.findNavController().navigate(
+                R.id.action_signUpFragment_to_signUpSecondFragment,
+                null,
+                null,
+                extras
+            )
+        }
 
     }
 }
