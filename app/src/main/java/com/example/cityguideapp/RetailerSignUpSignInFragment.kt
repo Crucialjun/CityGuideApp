@@ -48,5 +48,23 @@ class RetailerSignUpSignInFragment : Fragment() {
                 extras
             )
         }
+        sign_up_btn.setOnClickListener { p0 ->
+//            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+//                requireActivity(),
+//                UtilPair.create(login_btn, "transition_login")
+//            )
+//
+//
+//            val extras = ActivityNavigatorExtras(options)
+
+            val extras = FragmentNavigatorExtras(login_btn to "transition_sign_up")
+
+            p0!!.findNavController().navigate(
+                R.id.action_retailerSignUpSignInFragment_to_signUpFragment,
+                null,
+                null,
+                extras
+            )
+        }
     }
 }
