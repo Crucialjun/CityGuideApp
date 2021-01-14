@@ -45,7 +45,7 @@
             android:orientation="vertical">
 
             <com.hbb20.CountryCodePicker
-
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:ccp_autoDetectCountry="true"
