@@ -47,5 +47,14 @@
     <fragment
         android:id="@+id/lastSignUpFragment"
         android:name="com.example.cityguideapp.LastSignUpFragment"
-        android:label="LastSignUpFragment" />
+        android:label="LastSignUpFragment">
+        <action
+            android:id="@+id/action_lastSignUpFragment_to_verifyOtpFragment"
+            app:destination="@id/verifyOtpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verifyOtpFragment"
+        android:name="com.example.cityguideapp.VerifyOtpFragment"
+        android:label="fragment_verify_otp"
+        tools:layout="@layout/fragment_verify_otp" />
 </navigation>
