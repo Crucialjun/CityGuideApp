@@ -71,7 +71,7 @@
             android:layout_marginTop="30dp"
             android:cursorVisible="true"
             android:inputType="number"
-            android:shadowRadius="5dp"
+            android:shadowRadius="5"
             app:cursorColor="@color/black"
             app:hideLineWhenFilled="true"
             app:itemCount="6"
