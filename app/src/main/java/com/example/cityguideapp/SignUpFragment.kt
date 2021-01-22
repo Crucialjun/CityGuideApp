@@ -113,7 +113,7 @@ class SignUpFragment : Fragment() {
 
     }
 
-    fun validatePassword(): Boolean {
+    private fun validatePassword(): Boolean {
         val password = sign_up_password.editText!!.text.toString().trim()
         val checkpassWord = ("^" +
                 //"(?=.*[0-9])" +         //at least 1 digit
