@@ -53,6 +53,7 @@
             </TextView>
 
             <RadioGroup
+                android:id="@+id/sign_up_second_radio_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -101,6 +102,7 @@
             </TextView>
 
             <DatePicker
+                android:id="@+id/sign_up_second_date_picker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:calendarViewShown="false"
