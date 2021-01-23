@@ -5,6 +5,8 @@ import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -41,10 +43,19 @@ class SignUpSecondFragment : Fragment() {
 
         sign_up_second_next_btn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
-                if(!validateGender() || !validateAge()){
+                if (!validateGender() || !validateAge()) {
                     return
                 }
-                val selectedGender = sign_up_second_radio_group.checkedRadioButtonId
+
+                val selectedGenderButtonId = sign_up_second_radio_group.checkedRadioButtonId
+                val gender = view.findViewById<RadioButton>(selectedGenderButtonId).text
+
+                val day = sign_up_second_date_picker.dayOfMonth
+                val month = sign_up_second_date_picker.month
+                val year = sign_up_second_date_picker.year
+
+                val date = "$day/$month/$year"
+
                 val extras = FragmentNavigatorExtras(
                     signup_second_back_button to "transition_back_btn",
                     sign_up_second_next_btn to "transition_next_btn",
@@ -63,25 +74,26 @@ class SignUpSecondFragment : Fragment() {
         })
     }
 
-    fun validateGender() : Boolean {
-        if(sign_up_second_radio_group.checkedRadioButtonId == -1){
+    fun validateGender(): Boolean {
+        if (sign_up_second_radio_group.checkedRadioButtonId == -1) {
             Toast.makeText(context, "Please Select Gender", Toast.LENGTH_SHORT).show()
             return false
-        }else{
+        } else {
             return true
         }
     }
 
-    fun validateAge() : Boolean {
+    fun validateAge(): Boolean {
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
         val userAge = sign_up_second_date_picker.year
         val validYears = currentYear - userAge
 
-        if(validYears < 14){
-            Toast.makeText(context, "You are not eligible to apply to the app", Toast.LENGTH_SHORT).show()
+        if (validYears < 14) {
+            Toast.makeText(context, "You are not eligible to apply to the app", Toast.LENGTH_SHORT)
+                .show()
             return false
 
-        }else{
+        } else {
             return true
         }
     }
