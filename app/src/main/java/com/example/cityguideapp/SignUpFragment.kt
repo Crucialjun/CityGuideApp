@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
+import com.wajahatkarim3.easyvalidation.core.view_ktx.validator
 import kotlinx.android.synthetic.main.fragment_retailer_sign_up.*
 import kotlinx.android.synthetic.main.fragment_retailer_sign_up_sign_in.*
 
@@ -38,14 +39,14 @@ class SignUpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sign_up_next_btn.setOnClickListener { p0 ->
+        sign_up_last_next_btn.setOnClickListener { p0 ->
             if (!validateFullName() || !validateUserName() || !validateEmail() || !validatePassword()) {
                 return@setOnClickListener
             }
 
             val extras = FragmentNavigatorExtras(
                 signup_back_button to "transition_back_btn",
-                sign_up_next_btn to "transition_next_btn",
+                sign_up_last_next_btn to "transition_next_btn",
                 sign_up_login_btn to "transition_login_btn",
                 sign_up_title_text to "transition_title_text"
             )
@@ -114,28 +115,38 @@ class SignUpFragment : Fragment() {
     }
 
     private fun validatePassword(): Boolean {
-        val password = sign_up_password.editText!!.text.toString().trim()
-        val checkpassWord = ("^" +
-                //"(?=.*[0-9])" +         //at least 1 digit
-                //"(?=.*[a-z])" +         //at least 1 lower case letter
-                //"(?=.*[A-Z])" +         //at least 1 upper case letter
-                "(?=.*[a-zA-Z])" +      //any letter
-                //"(?=.*[@#$%^&+=])" +    //at least 1 special character
-                "(?=S+$)" +           //no white spaces
-                ".{4,}" +               //at least 4 characters
-                "$").toRegex()
+//        val password = sign_up_password.editText!!.text.toString().trim()
+//        val checkpassWord = ("^" +
+//                //"(?=.*[0-9])" +         //at least 1 digit
+//                //"(?=.*[a-z])" +         //at least 1 lower case letter
+//                //"(?=.*[A-Z])" +         //at least 1 upper case letter
+//                "(?=.*[a-zA-Z])" +      //any letter
+//                //"(?=.*[@#$%^&+=])" +    //at least 1 special character
+//                "(?=S+$)" +           //no white spaces
+//                ".{4,}" +               //at least 4 characters
+//                "$").toRegex()
+//
+//
+//        return if (password.isEmpty()) {
+//            sign_up_password.error = "Field Cannot be empty"
+//            false
+//        } else if (!password.matches(checkpassWord)) {
+//            sign_up_password.error = "Invalid Password"
+//            false
+//        } else {
+//            sign_up_password.error = null
+//            sign_up_password.isErrorEnabled = false
+//            true
+//        }
 
-        return if (password.isEmpty()) {
-            sign_up_password.error = "Field Cannot be empty"
-            false
-        } else if (!password.matches(checkpassWord)) {
-            sign_up_password.error = "Invalid Password"
-            false
-        } else {
-            sign_up_password.error = null
-            sign_up_email.isErrorEnabled = false
-            true
-        }
+        return sign_up_password.editText!!.validator()
+            .nonEmpty()
+            .atleastOneNumber()
+            .atleastOneUpperCase()
+            .addErrorCallback {
+                sign_up_password.error = it
+            }
+            .check()
 
     }
 }

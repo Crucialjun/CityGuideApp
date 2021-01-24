@@ -56,5 +56,10 @@
         android:id="@+id/verifyOtpFragment"
         android:name="com.example.cityguideapp.VerifyOtpFragment"
         android:label="fragment_verify_otp"
-        tools:layout="@layout/fragment_verify_otp" />
+        tools:layout="@layout/fragment_verify_otp">
+        <argument
+            android:name="phoneNumber"
+            android:defaultValue='""'
+            app:argType="string" />
+    </fragment>
 </navigation>

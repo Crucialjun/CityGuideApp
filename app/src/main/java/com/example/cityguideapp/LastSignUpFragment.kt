@@ -2,10 +2,13 @@ package com.example.cityguideapp
 
 import android.os.Bundle
 import android.transition.TransitionInflater
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_last__sign__up_.*
 
 
 /**
@@ -31,5 +34,45 @@ class LastSignUpFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_last__sign__up_, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        sign_up_last_next_btn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                if (!verifyPhoneNumber()) {
+                    return
+                }
+                val phoneNumber = verifyOtp()
+                val action =
+                    LastSignUpFragmentDirections.actionLastSignUpFragmentToVerifyOtpFragment(
+                        phoneNumber
+                    )
+                findNavController().navigate(action)
+            }
+
+        })
+    }
+
+    private fun verifyOtp(): String {
+        val userEnteredPhoneNumber = last_sign_up_phone_number.editText!!.text.toString().trim()
+        return "+${last_sign_up_country_code_picker.fullNumber}$userEnteredPhoneNumber"
+
+    }
+
+    private fun verifyPhoneNumber(): Boolean {
+        val phoneNumber = last_sign_up_phone_number.editText!!.text.toString().trim()
+        if (phoneNumber.isEmpty()) {
+            last_sign_up_phone_number.error = "Field Cannot be empty"
+            return false
+        } else if (Patterns.PHONE.matcher(phoneNumber).matches()) {
+            last_sign_up_phone_number.error = null
+            last_sign_up_phone_number.isErrorEnabled = false
+            return true
+
+        } else {
+            return false
+        }
+    }
 
 }

@@ -5,6 +5,8 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 
 class RetailerStartUpActivity : AppCompatActivity() {
+
+    var phoneNumber: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

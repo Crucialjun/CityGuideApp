@@ -45,9 +45,10 @@
             android:orientation="vertical">
 
             <com.hbb20.CountryCodePicker
-                android:padding="5dp"
+                android:id="@+id/last_sign_up_country_code_picker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 app:ccp_autoDetectCountry="true"
                 app:ccp_showFlag="true"
                 app:ccp_showFullName="true"
@@ -57,6 +58,7 @@
             </com.hbb20.CountryCodePicker>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/last_sign_up_phone_number"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -85,7 +87,7 @@
 
 
         <Button
-            android:id="@+id/sign_up_next_btn"
+            android:id="@+id/sign_up_last_next_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
