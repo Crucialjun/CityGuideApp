@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_last__sign__up_.*
 
 
@@ -17,6 +18,8 @@ import kotlinx.android.synthetic.main.fragment_last__sign__up_.*
  * create an instance of this fragment.
  */
 class LastSignUpFragment : Fragment() {
+
+    private val args: LastSignUpFragmentArgs by navArgs()
 
 
     override fun onCreateView(
@@ -38,6 +41,13 @@ class LastSignUpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        val fullName = args.fullName
+        val username = args.userName
+        val email = args.email
+        val password = args.password
+        val gender = args.gender
+        val date = args.date
+
         sign_up_last_next_btn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 if (!verifyPhoneNumber()) {
@@ -46,7 +56,7 @@ class LastSignUpFragment : Fragment() {
                 val phoneNumber = verifyOtp()
                 val action =
                     LastSignUpFragmentDirections.actionLastSignUpFragmentToVerifyOtpFragment(
-                        phoneNumber
+                        fullName, username, email, password, gender, date, phoneNumber
                     )
                 findNavController().navigate(action)
             }
@@ -62,16 +72,16 @@ class LastSignUpFragment : Fragment() {
 
     private fun verifyPhoneNumber(): Boolean {
         val phoneNumber = last_sign_up_phone_number.editText!!.text.toString().trim()
-        if (phoneNumber.isEmpty()) {
+        return if (phoneNumber.isEmpty()) {
             last_sign_up_phone_number.error = "Field Cannot be empty"
-            return false
+            false
         } else if (Patterns.PHONE.matcher(phoneNumber).matches()) {
             last_sign_up_phone_number.error = null
             last_sign_up_phone_number.isErrorEnabled = false
-            return true
+            true
 
         } else {
-            return false
+            false
         }
     }
 

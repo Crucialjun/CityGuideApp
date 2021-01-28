@@ -43,6 +43,22 @@
         <action
             android:id="@+id/action_signUpSecondFragment_to_lastSignUpFragment"
             app:destination="@id/lastSignUpFragment" />
+        <argument
+            android:name="fullName"
+            android:defaultValue='""'
+            app:argType="string" />
+        <argument
+            android:name="userName"
+            android:defaultValue='""'
+            app:argType="string" />
+        <argument
+            android:name="email"
+            android:defaultValue='""'
+            app:argType="string" />
+        <argument
+            android:name="password"
+            android:defaultValue='""'
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/lastSignUpFragment"
@@ -51,6 +67,24 @@
         <action
             android:id="@+id/action_lastSignUpFragment_to_verifyOtpFragment"
             app:destination="@id/verifyOtpFragment" />
+        <argument
+            android:name="fullName"
+            app:argType="string" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="password"
+            app:argType="string" />
+        <argument
+            android:name="gender"
+            app:argType="string" />
+        <argument
+            android:name="date"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/verifyOtpFragment"
@@ -58,8 +92,25 @@
         android:label="fragment_verify_otp"
         tools:layout="@layout/fragment_verify_otp">
         <argument
+            android:name="fullName"
+            app:argType="string" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="password"
+            app:argType="string" />
+        <argument
+            android:name="gender"
+            app:argType="string" />
+        <argument
+            android:name="date"
+            app:argType="string" />
+        <argument
             android:name="phoneNumber"
-            android:defaultValue='""'
             app:argType="string" />
     </fragment>
 </navigation>

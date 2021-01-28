@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validator
 import kotlinx.android.synthetic.main.fragment_retailer_sign_up.*
 import kotlinx.android.synthetic.main.fragment_retailer_sign_up_sign_in.*
@@ -51,17 +51,22 @@ class SignUpFragment : Fragment() {
                 sign_up_title_text to "transition_title_text"
             )
 
-            p0!!.findNavController().navigate(
-                R.id.action_signUpFragment_to_signUpSecondFragment,
-                null,
-                null,
-                extras
+
+            val action = SignUpFragmentDirections.actionSignUpFragmentToSignUpSecondFragment(
+                sign_up_full_name.editText!!.text.toString(),
+                sign_up_user_name.editText!!.text.toString(),
+                sign_up_email.editText!!.text.toString(),
+                sign_up_password.editText!!.text.toString()
+            )
+
+            findNavController().navigate(
+                action, extras
             )
         }
 
     }
 
-    fun validateFullName(): Boolean {
+    private fun validateFullName(): Boolean {
         val fullname = sign_up_full_name.editText!!.text.toString().trim()
 
         return if (fullname.isEmpty()) {

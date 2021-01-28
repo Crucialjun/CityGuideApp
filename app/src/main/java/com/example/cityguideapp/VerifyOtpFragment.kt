@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_verify_otp.*
 import java.util.concurrent.TimeUnit
 
@@ -22,7 +23,7 @@ import java.util.concurrent.TimeUnit
 class VerifyOtpFragment : Fragment() {
     lateinit var mAuth: FirebaseAuth
     var codeBySystem = ""
-    val args: VerifyOtpFragmentArgs by navArgs()
+    private val args: VerifyOtpFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,14 +40,11 @@ class VerifyOtpFragment : Fragment() {
         val phoneNumber = args.phoneNumber
         sendVerificationToUser(phoneNumber)
 
-        btn_verify_code.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                if (!verify_otp_pin_view.text!!.isEmpty()) {
-                    verifyCode(verify_otp_pin_view.text.toString())
-                }
+        btn_verify_code.setOnClickListener {
+            if (verify_otp_pin_view.text!!.isNotEmpty()) {
+                verifyCode(verify_otp_pin_view.text.toString())
             }
-
-        })
+        }
     }
 
     private fun sendVerificationToUser(phoneNumber: String) {
@@ -94,6 +92,8 @@ class VerifyOtpFragment : Fragment() {
                     Toast.makeText(context, "Verification Successful", Toast.LENGTH_SHORT).show()
 
                     val user = task.result?.user
+
+                    storeUserData()
                     // ...
                 } else {
                     // Sign in failed, display a message and update the UI
@@ -108,5 +108,12 @@ class VerifyOtpFragment : Fragment() {
                     }
                 }
             }
+    }
+
+    private fun storeUserData() {
+        val rootNode = FirebaseDatabase.getInstance()
+        val ref = rootNode.getReference("Users")
+
+        ref.setValue("First Record")
     }
 }

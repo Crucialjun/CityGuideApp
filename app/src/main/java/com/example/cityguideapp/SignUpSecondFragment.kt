@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.fragment_retailer_sign_up.*
 import kotlinx.android.synthetic.main.fragment_sign_up_second.*
 import java.util.*
@@ -22,6 +22,8 @@ import java.util.*
  * create an instance of this fragment.
  */
 class SignUpSecondFragment : Fragment() {
+
+    private val args: SignUpSecondFragmentArgs by navArgs()
 
 
     override fun onCreateView(
@@ -41,6 +43,11 @@ class SignUpSecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val fullName = args.fullName
+        val username = args.userName
+        val email = args.email
+        val password = args.password
+
         sign_up_second_next_btn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 if (!validateGender() || !validateAge()) {
@@ -48,7 +55,7 @@ class SignUpSecondFragment : Fragment() {
                 }
 
                 val selectedGenderButtonId = sign_up_second_radio_group.checkedRadioButtonId
-                val gender = view.findViewById<RadioButton>(selectedGenderButtonId).text
+                val gender = view.findViewById<RadioButton>(selectedGenderButtonId).text.toString()
 
                 val day = sign_up_second_date_picker.dayOfMonth
                 val month = sign_up_second_date_picker.month
@@ -63,11 +70,18 @@ class SignUpSecondFragment : Fragment() {
                     sign_up_second_title_text to "transition_title_text"
                 )
 
+                val action =
+                    SignUpSecondFragmentDirections.actionSignUpSecondFragmentToLastSignUpFragment(
+                        fullName,
+                        username,
+                        email,
+                        password,
+                        gender,
+                        date
+                    )
+
                 p0!!.findNavController().navigate(
-                    R.id.action_signUpSecondFragment_to_lastSignUpFragment,
-                    null,
-                    null,
-                    extras
+                    action, extras
                 )
             }
 
