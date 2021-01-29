@@ -102,13 +102,13 @@ class SignUpSecondFragment : Fragment() {
         val userAge = sign_up_second_date_picker.year
         val validYears = currentYear - userAge
 
-        if (validYears < 14) {
+        return if (validYears < 14) {
             Toast.makeText(context, "You are not eligible to apply to the app", Toast.LENGTH_SHORT)
                 .show()
-            return false
+            false
 
         } else {
-            return true
+            true
         }
     }
 

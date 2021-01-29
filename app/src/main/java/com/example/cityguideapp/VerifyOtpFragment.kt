@@ -23,6 +23,13 @@ import java.util.concurrent.TimeUnit
 class VerifyOtpFragment : Fragment() {
     lateinit var mAuth: FirebaseAuth
     var codeBySystem = ""
+    var phoneNumber = ""
+    var fullName = ""
+    var username = ""
+    var email = ""
+    var password = ""
+    var gender = ""
+    var date = ""
     private val args: VerifyOtpFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -37,7 +44,14 @@ class VerifyOtpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val phoneNumber = args.phoneNumber
+        phoneNumber = args.phoneNumber
+        fullName = args.fullName
+        username = args.userName
+        email = args.email
+        password = args.password
+        gender = args.gender
+        date = args.date
+
         sendVerificationToUser(phoneNumber)
 
         btn_verify_code.setOnClickListener {
@@ -114,6 +128,8 @@ class VerifyOtpFragment : Fragment() {
         val rootNode = FirebaseDatabase.getInstance()
         val ref = rootNode.getReference("Users")
 
-        ref.setValue("First Record")
+        val newUser = UserHelper(fullName, username, email, phoneNumber, password, date, gender)
+
+        ref.setValue(newUser)
     }
 }
