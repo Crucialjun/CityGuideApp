@@ -39,7 +39,7 @@ class SignUpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sign_up_last_next_btn.setOnClickListener { p0 ->
+        sign_up_last_next_btn.setOnClickListener {
             if (!validateFullName() || !validateUserName() || !validateEmail() || !validatePassword()) {
                 return@setOnClickListener
             }

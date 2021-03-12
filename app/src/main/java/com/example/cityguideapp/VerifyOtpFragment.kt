@@ -130,6 +130,6 @@ class VerifyOtpFragment : Fragment() {
 
         val newUser = UserHelper(fullName, username, email, phoneNumber, password, date, gender)
 
-        ref.setValue(newUser)
+        ref.child(phoneNumber).setValue(newUser)
     }
 }

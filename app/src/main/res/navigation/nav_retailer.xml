@@ -25,6 +25,12 @@
         <action
             android:id="@+id/action_loginRetailerFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginRetailerFragment_to_retailerSignUpSignInFragment"
+            app:destination="@id/retailerSignUpSignInFragment" />
+        <action
+            android:id="@+id/action_loginRetailerFragment_to_forgetPasswordSelectionFragment"
+            app:destination="@id/forgetPasswordSelectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -113,4 +119,26 @@
             android:name="phoneNumber"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/forgetPasswordFragment"
+        android:name="com.example.cityguideapp.ForgetPasswordFragment"
+        android:label="fragment_forget_password"
+        tools:layout="@layout/fragment_forget_password" />
+    <fragment
+        android:id="@+id/forgetPasswordSelectionFragment"
+        android:name="com.example.cityguideapp.ForgetPasswordSelectionFragment"
+        android:label="fragment_forget_password_selection"
+        tools:layout="@layout/fragment_forget_password_selection">
+        <action
+            android:id="@+id/action_forgetPasswordSelectionFragment_to_forgetPasswordFragment"
+            app:destination="@id/forgetPasswordFragment" />
+        <action
+            android:id="@+id/action_forgetPasswordSelectionFragment_to_forgetPasswordPhoneFragment"
+            app:destination="@id/forgetPasswordPhoneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgetPasswordPhoneFragment"
+        android:name="com.example.cityguideapp.ForgetPasswordPhoneFragment"
+        android:label="fragment_forget_password_phone"
+        tools:layout="@layout/fragment_forget_password_phone" />
 </navigation>
