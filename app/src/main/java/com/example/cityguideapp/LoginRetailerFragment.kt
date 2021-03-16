@@ -107,6 +107,28 @@ class LoginRetailerFragment : Fragment() {
                                 .child(formattedPhoneNumber)
                                 .child("date").value
 
+                            val username =
+                                snapshot.child(formattedPhoneNumber).child("username").value
+                            val gender = snapshot.child(formattedPhoneNumber).child("gender").value
+
+                            SessionManager(requireContext()).createLoginSession(
+                                fullname as String,
+                                username as String,
+                                email as String,
+                                phoneNumber as String,
+                                password,
+                                dateOfBirth as String,
+                                gender as String
+
+                            )
+
+                            findNavController().navigate(R.id.action_loginRetailerFragment_to_retailerDashboardActivity)
+
+
+
+
+
+
 
                             Toast.makeText(
                                 requireContext(),

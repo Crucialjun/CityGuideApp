@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_loginRetailerFragment_to_forgetPasswordSelectionFragment"
             app:destination="@id/forgetPasswordSelectionFragment" />
+        <action
+            android:id="@+id/action_loginRetailerFragment_to_retailerDashboardActivity"
+            app:destination="@id/retailerDashboardActivity" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -141,4 +144,9 @@
         android:name="com.example.cityguideapp.ForgetPasswordPhoneFragment"
         android:label="fragment_forget_password_phone"
         tools:layout="@layout/fragment_forget_password_phone" />
+    <activity
+        android:id="@+id/retailerDashboardActivity"
+        android:name="com.example.cityguideapp.RetailerDashboardActivity"
+        android:label="activity_retailer_dashboard"
+        tools:layout="@layout/activity_retailer_dashboard" />
 </navigation>
