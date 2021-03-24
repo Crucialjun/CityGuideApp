@@ -3,9 +3,11 @@ package com.example.cityguideapp
 import android.content.Context
 import android.content.SharedPreferences
 
-class SessionManager(context: Context) {
+class SessionManager(context: Context, sessionName: String) {
 
     val IS_LOGIN = "IsLoggedIn"
+    val SESSION_USER_SESSION = "userSession"
+    val SESSION_REMEMBER_ME = "rememberMe"
     val KEY_FULLNAME = "fullname"
     private val KEY_USERNAME = "fullname"
     private val KEY_EMAIL = "email"
@@ -13,10 +15,15 @@ class SessionManager(context: Context) {
     private val KEY_PASSWORD = "password"
     private val KEY_DATE = "date"
     private val KEY_GENDER = "gender"
+    private val IS_REMEMBER_ME = "IsRememberMe"
+    private val KEY_SESSION_PHONENUMBER = "phonenumber"
+    private val KEY_SESSION_PASSWORD = "password"
 
     private val userSession: SharedPreferences =
-        context.getSharedPreferences("userSession", Context.MODE_PRIVATE)
+        context.getSharedPreferences(sessionName, Context.MODE_PRIVATE)
     private val editor: SharedPreferences.Editor = userSession.edit()
+
+    constructor(context: Context) : this(context, "")
 
 
     fun createLoginSession(
@@ -41,6 +48,18 @@ class SessionManager(context: Context) {
 
     }
 
+    fun createRememberMeSession(
+        phoneno: String,
+        password: String,
+    ) {
+        editor.putBoolean(IS_REMEMBER_ME, true)
+        editor.putString(KEY_SESSION_PHONENUMBER, phoneno)
+        editor.putString(KEY_SESSION_PASSWORD, password)
+
+        editor.commit()
+
+    }
+
     fun getUserDetails(): HashMap<String, String?> {
         val userData = HashMap<String, String?>()
 
@@ -55,8 +74,21 @@ class SessionManager(context: Context) {
         return userData
     }
 
+    fun getRememberMeDetails(): HashMap<String, String?> {
+        val userData = HashMap<String, String?>()
+
+        userData[KEY_SESSION_PASSWORD] = userSession.getString(KEY_SESSION_PHONENUMBER, null)
+        userData[KEY_SESSION_PASSWORD] = userSession.getString(KEY_SESSION_PASSWORD, null)
+
+        return userData
+    }
+
     fun isLoggedIn(): Boolean {
         return userSession.getBoolean(IS_LOGIN, true)
+    }
+
+    fun checkRememberMe(): Boolean {
+        return userSession.getBoolean(IS_REMEMBER_ME, true)
     }
 
     fun logOutsession() {

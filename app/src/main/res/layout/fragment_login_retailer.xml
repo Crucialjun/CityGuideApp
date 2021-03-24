@@ -113,6 +113,7 @@
 
 
             <CheckBox
+                android:id="@+id/checkbox_remember_me"
                 style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

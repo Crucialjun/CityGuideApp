@@ -70,6 +70,15 @@ class LoginRetailerFragment : Fragment() {
 
             val formattedPhoneNumber = "+${login_countrycodepicker.fullNumber}$phoneNumber"
 
+
+            if (checkbox_remember_me.isChecked) {
+                val sessionManager = SessionManager(
+                    requireContext(),
+                    SessionManager(requireContext()).SESSION_REMEMBER_ME
+                )
+                sessionManager.createRememberMeSession(phoneNumber, password)
+            }
+
             val checkUser =
                 FirebaseDatabase.getInstance()
                     .getReference("Users")
@@ -111,16 +120,20 @@ class LoginRetailerFragment : Fragment() {
                                 snapshot.child(formattedPhoneNumber).child("username").value
                             val gender = snapshot.child(formattedPhoneNumber).child("gender").value
 
-                            SessionManager(requireContext()).createLoginSession(
-                                fullname as String,
-                                username as String,
-                                email as String,
-                                phoneNumber as String,
-                                password,
-                                dateOfBirth as String,
-                                gender as String
-
+                            SessionManager(
+                                requireContext(),
+                                SessionManager(requireContext()).SESSION_USER_SESSION
                             )
+                                .createLoginSession(
+                                    fullname as String,
+                                    username as String,
+                                    email as String,
+                                    phoneNumber as String,
+                                    password,
+                                    dateOfBirth as String,
+                                    gender as String
+
+                                )
 
                             findNavController().navigate(R.id.action_loginRetailerFragment_to_retailerDashboardActivity)
 
